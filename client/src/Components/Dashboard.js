@@ -50,6 +50,7 @@ const Dashboard = () => {
 return (
   <div>
       <h1>Welcome, {user.displayName}</h1>
+      <h2>How are you {user.isAdmin?('Admin'):('User')}</h2>
   </div>
 );
 }

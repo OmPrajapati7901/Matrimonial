@@ -10,6 +10,8 @@ const userRoutes = require('./routes/userRoutes');
 const entitlementRoutes = require('./routes/entitlementRoutes');
 const authRoutes = require('./routes/authRoutes');
 const ensureAuthenticated = require("./middlewares/ensureAuthenticated");
+const ensureAdmin = require("./middlewares/ensureAdmin");
+
 
 app.use(cors({
     origin: "http://localhost:3001",
@@ -33,14 +35,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get("/auth/verify", ensureAuthenticated, (req, res) => {
-    res.status(200).json({ user: req.user });
-});
+// app.get("/auth/verify", ensureAuthenticated, (req, res) => {
+//     res.status(200).json({ user: req.user });
+// });
 
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/users', ensureAuthenticated ,userRoutes);
 app.use('/api/entitlements',ensureAuthenticated, entitlementRoutes);
+
+app.use('/api/admin', ensureAdmin, (req, res)=>{  res.send('Hello Admin!');}
+);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

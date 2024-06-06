@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Login = () => {
-
+    const API_BASE_URL = process.env.REACT_APP_BACKEND_API_BASE_URL;
     const loginwithgoogle = () => {
-        window.open("http://localhost:6005/auth/google/callback", "_self");
+        window.open(`${API_BASE_URL}/auth/google/callback`, "_self");
     };
 
     return (

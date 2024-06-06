@@ -1,7 +1,7 @@
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
 
 const verifyUser = (req, res) => {
-    res.status(200).json({ user: req.user });
+    res.status(200).json({ user: req.user, isAdmin:req.user.isAdmin });
 };
 
 const logoutUser = (req, res, next) => {

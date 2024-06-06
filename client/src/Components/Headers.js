@@ -8,8 +8,8 @@ const Headers = () => {
     const value = useContext(AppContext);
     const [userdata, setUserdata] = useState({});
     console.log("response", userdata)
-    const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const API_BASE_URL = process.env.REACT_APP_BACKEND_API_BASE_URL;
     // const getUser = async () => {
     //     try {
     //         const response = await axios.get("http://localhost:6005/login/sucess", { withCredentials: true });
@@ -26,7 +26,7 @@ const Headers = () => {
 
     // logout
     const logout = () => {
-        window.open("http://localhost:6005/auth/logout", "_self")
+        window.open(`${API_BASE_URL}/auth/logout`, "_self")
     }
 
 
@@ -37,9 +37,9 @@ const Headers = () => {
             // navigate("*")
             console.log("not authenticatedUser")
         } else {
-            setUser(authenticatedUser);
-               setUserdata(authenticatedUser)
-     value.setuserData(authenticatedUser)
+            setUserdata(authenticatedUser)
+            value.setuserData(authenticatedUser)
+            // console.log("authenticatedUser", authenticatedUser)
         }
     };
     
@@ -48,6 +48,8 @@ const Headers = () => {
       
         verifyUser();
     }, []);
+
+    // console.log(user)
     return (
         <>
             {/* <header>
@@ -89,7 +91,7 @@ const Headers = () => {
             <header className="text-gray-600 body-font">
   <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
       </svg>
       <span className="ml-3 text-xl">Tailblocks</span>
@@ -102,6 +104,7 @@ const Headers = () => {
     </nav>
     {Object?.keys(userdata)?.length > 0 ? (
       <div className="flex items-center">
+         <NavLink to="/profile" className="mr-5 hover:text-gray-900">Profile</NavLink>
         <span className="mr-5 text-black font-bold">{userdata?.displayName}</span>
         <NavLink to="/dashboard" className="mr-5 hover:text-gray-900">Dashboard</NavLink>
         <span onClick={logout} className="mr-5 cursor-pointer hover:text-gray-900">Logout</span>
@@ -109,7 +112,7 @@ const Headers = () => {
       </div>
     ) : (
       <NavLink to="/login" className="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
+        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-1" viewBox="0 0 24 24">
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       </NavLink>

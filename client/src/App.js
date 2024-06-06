@@ -7,6 +7,7 @@ import Dashboard from './Components/Dashboard';
 import Error from './Components/Error';
 import { useState } from 'react';
 import { AppContext } from './contexts/AppContext';
+import Profile from './Components/Profile';
 
 function App() {
   const [userData, setuserData] = useState(undefined)
@@ -19,6 +20,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/dashboard' element={<Dashboard />} />
+      <Route path='/profile' element={<Profile />} />
       <Route path='*' element={<Error />} />
     </Routes>
     </AppContext.Provider>

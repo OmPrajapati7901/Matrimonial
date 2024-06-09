@@ -34,6 +34,7 @@ const generateAccessAndRefereshTokens = async(userId) => {
 const registerUser = asyncHandler(async (req, res) => {
     const {email, username, password } = req.body;
 
+    // console.log(email, username, password)
     // Check if any of the required fields are empty
     if ([email, username, password].some((field) => field?.trim() === "")) {
         throw new ApiError(400, "All fields are required");
@@ -71,8 +72,8 @@ const registerUser = asyncHandler(async (req, res) => {
 // Function to log in a user
 const loginUser = asyncHandler(async (req, res) => {
     const {email, username, password} = req.body;
-    console.log(email);
-
+    // console.log(email);
+    console.log("here in user.controller.js")
     // Check if username or email is provided
     if (!username && !email) {
         throw new ApiError(400, "username or email is required");

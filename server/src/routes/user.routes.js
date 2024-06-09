@@ -16,6 +16,7 @@ router.route('/register').post(
     registerUser
 );
 
+console.log("here in user.route.js")
 router.route('/login').post(loginUser);
 
 // Secured routes

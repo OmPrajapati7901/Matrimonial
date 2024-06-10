@@ -27,8 +27,14 @@ const Profile = () => {
         setUserProfile(data);
         setError(null); // Reset error state if previous fetch had errors
       } catch (e) {
-        console.log(e);
-        setError("Failed to fetch user profile");
+        // setError("Failed to fetch user profile",e.response.data);
+        if(e.response.status===404){
+          // console.log('ferbib',e.response.data.message);
+          // setError(e.response.data.message)
+        }
+        else{
+        setError(e);
+        }
         setUserProfile(null);
       } finally {
         setLoading(false);
@@ -43,9 +49,9 @@ const Profile = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error fetching profile: {error}</p>;
-  if (!userProfile) return <p>No profile found</p>;
-
+  if (error) return <p>Error fetching profile: {error}</p>;  
+  if (!userProfile) return <p>No profile found.</p>;
+  // JSON.stringify(error.data, null, 2)
   return (
     <div>
       <h1>{userProfile.username}'s Profile</h1>

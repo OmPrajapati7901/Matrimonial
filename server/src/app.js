@@ -24,6 +24,7 @@ app.use(cookieParser());
 //routes import
 const userRouter = require('./routes/user.routes.js');
 const userprofileRouter = require('./routes/userProfile.routes.js');
+const ApiError = require("./utils/ApiError.js");
 
 
 
@@ -34,4 +35,26 @@ app.use("/api/v1/userprofile", userprofileRouter)
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+
+
+// Custom error handling middleware
+app.use((err, req, res, next) => {
+  if (err instanceof ApiError) {
+      res.status(err.statusCode).json({
+          success: err.success,
+          message: err.message,
+          errors: err.errors
+           // ,stack:err.stack
+      });
+  } else {
+      // Fallback for other types of errors
+      res.status(500).json({
+          success: false,
+          message: "Internal Server Error"
+      });
+  }
+});
+
+
 module.exports = { app };

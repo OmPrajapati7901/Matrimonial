@@ -63,7 +63,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     const userProfile = await UserProfile.findOne({ email });
     console.log(userProfile)
     if (!userProfile) {
-        throw new ApiError(404, "Plase create profile");
+        throw new ApiError(404, "Please your create profile");
     }
     
     return res

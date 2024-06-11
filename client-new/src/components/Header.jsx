@@ -38,6 +38,9 @@ const Header = () => {
           <a className="mr-5 hover:text-gray-900">First Link</a>
           <a className="mr-5 hover:text-gray-900">Second Link</a>
           <a className="mr-5 hover:text-gray-900">Third Link</a>
+          {!user?null:<a className="mr-5 hover:text-gray-900" to="/profile">
+            Hi! {user.username}
+          </a>}
           {!user?null:<Link className="mr-5 hover:text-gray-900" to="/profile">
             Profile
           </Link>}

@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Profile from "./pages/Profile";
 import SigninPage from "./pages/Signin";
 import SignupPage from "./pages/Signup";
+import CreateProfile from "./pages/CreateProfile";
 
 function App() {
   return (
@@ -62,6 +63,16 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <Profile />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-profile"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <CreateProfile />
               </Layout>
             </ProtectedRoute>
           }

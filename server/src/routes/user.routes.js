@@ -20,6 +20,7 @@ console.log("here in user.route.js")
 router.route('/login').post(loginUser);
 
 // Secured routes
+console.log("from user routes")
 router.route('/logout').post(verifyJWT, logoutUser);
 router.route('/refresh-token').post(refreshAccessToken);
 router.route('/change-password').post(verifyJWT, changeCurrentPassword);

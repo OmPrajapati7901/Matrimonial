@@ -1,48 +1,8 @@
-import React, { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React from "react";
+import { Link } from "react-router-dom";
+import SignupForm from "../form/SignupForm";
 
 const SignupPage = () => {
-
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
-
-    const handlesignup = async (e) => {
-        e.preventDefault();
-        // console.log( ' email, password',email, password)
-      //   try {
-      //     const response = await axios.get('http://localhost:6005/');
-      //     console.log('Data fetched successfully:', response);
-      // } catch (error) {
-      //     console.error('Error fetching data:', error);
-      // }
-        try {
-          const response = await axios.post(
-            "http://localhost:6005/api/v1/users/register",
-            {
-              email,username, password
-            },
-            { withCredentials: true }
-          );
-          const {data}=response
-          console.log ("response from signup",data)
-          if (data.success) {
-            navigate("/signin");
-            // await login(data.data.user);
-          } else {
-            alert("some thing wrong",data);
-          }
-        } catch (error) {
-          console.log('Login API error');
-          console.log(error)
-        }
-     
-      };
-    
-
   return (
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -77,8 +37,7 @@ const SignupPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Commercial License{" "}
+                    Commercial License
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -97,8 +56,7 @@ const SignupPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Unlimited Exports{" "}
+                    Unlimited Exports
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -117,8 +75,7 @@ const SignupPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    120+ Coded Blocks{" "}
+                    120+ Coded Blocks
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -137,8 +94,7 @@ const SignupPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Design Files Included{" "}
+                    Design Files Included
                   </span>
                 </li>
               </ul>
@@ -161,77 +117,7 @@ const SignupPage = () => {
                 Sign In
               </Link>
             </p>
-            <form onSubmit={handlesignup} action="#" method="POST" className="mt-8">
-              <div className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="text-base font-medium text-gray-900"
-                  >
-                    {" "}
-                    User Name{" "}
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="text"
-                      placeholder="User Name"
-                      id="username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    ></input>
-                  </div>
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="text-base font-medium text-gray-900"
-                  >
-                    {" "}
-                    Email address{" "}
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="email"
-                      placeholder="Email"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    ></input>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label
-                      htmlFor="password"
-                      className="text-base font-medium text-gray-900"
-                    >
-                      {" "}
-                      Password{" "}
-                    </label>
-                  </div>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="password"
-                      placeholder="Password"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    ></input>
-                  </div>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                  >
-                    Create Account <ArrowRight className="ml-2" size={16} />
-                  </button>
-                </div>
-              </div>
-            </form>
+            <SignupForm />
             <div className="mt-3 space-y-3">
               <button
                 type="button"

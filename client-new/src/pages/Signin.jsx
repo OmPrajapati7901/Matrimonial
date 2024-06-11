@@ -1,57 +1,9 @@
-import React from "react";
-import ringsphoto from "../assets/ringsphoto.jpg";
-import { useState } from "react";
-import { useAuth } from "../hooks/useAuth";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import ringsphoto from '../assets/ringsphoto.jpg';
+import SigninForm from '../form/SigninForm';
+import { Link } from 'react-router-dom';
 
 const SigninPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useAuth();
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    // console.log( ' email, password',email, password)
-  //   try {
-  //     const response = await axios.get('http://localhost:6005/');
-  //     console.log('Data fetched successfully:', response);
-  // } catch (error) {
-  //     console.error('Error fetching data:', error);
-  // }
-    try {
-      const response = await axios.post(
-        "http://localhost:6005/api/v1/users/login",
-        {
-          email, password
-        },
-        { withCredentials: true }
-      );
-      const {data}=response
-      // console.log( ' data',data.data.user)
-      if (data.success) {
-        // console.log(data.data.user)
-        await login(data.data.user);
-      } else {
-        alert("Invalid email or password");
-      }
-    } catch (error) {
-      console.log('Login API error');
-      console.log(error)
-    }
-    // Here you would usually send a request to your backend to authenticate the user
-    // For the sake of this example, we're using a mock authentication
-
-    // if (email === "om@om.com" && password === "om") {
-    //   // Replace with actual authentication logic
-    //   await login({ email });
-    // } else {
-    //   alert("Invalid email or password");
-    // }
-  };
-
   return (
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -60,7 +12,6 @@ const SigninPage = () => {
             <img
               className="h-full w-full rounded-md object-cover object-top"
               src={ringsphoto}
-              //   "https://images.unsplash.com/photo-1534120247760-c44c3e4a62f1?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTk0fHxkZXNpZ25lcnxlbnwwfHwwfHw%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
               alt=""
             />
           </div>
@@ -87,8 +38,7 @@ const SigninPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Commercial License{" "}
+                    Commercial License
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -107,8 +57,7 @@ const SigninPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Unlimited Exports{" "}
+                    Unlimited Exports
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -127,8 +76,7 @@ const SigninPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    120+ Coded Blocks{" "}
+                    120+ Coded Blocks
                   </span>
                 </li>
                 <li className="flex items-center space-x-3">
@@ -147,8 +95,7 @@ const SigninPage = () => {
                     </svg>
                   </div>
                   <span className="text-lg font-medium text-white">
-                    {" "}
-                    Design Files Included{" "}
+                    Design Files Included
                   </span>
                 </li>
               </ul>
@@ -164,84 +111,12 @@ const SigninPage = () => {
               Don&#x27;t have an account?{" "}
               <Link
                 to="/signup"
-                href="#"
-                title=""
                 className="font-semibold text-black transition-all duration-200 hover:underline"
-                
               >
                 Create a free account
               </Link>
             </p>
-            <form onSubmit={handleLogin} action="#" method="POST" className="mt-8">
-              <div className="space-y-5">
-                <div>
-                  <label htmlFor="" className="text-base font-medium text-gray-900">
-                    {" "}
-                    Email address{" "}
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                       id="email"
-                      type="email"
-                      placeholder="Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <div className="flex items-center justify-between">
-                    <label htmlFor="" className="text-base font-medium text-gray-900">
-                      {" "}
-                      Password{" "}
-                    </label>
-                    <a
-                      href="#"
-                      title=""
-                      className="text-sm font-semibold text-black hover:underline"
-                    >
-                      {" "}
-                      Forgot password?{" "}
-                    </a>
-                  </div>
-                  <div className="mt-2">
-                    <input
-                      className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                       id="password"
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <button
-                    type="submit"
-                    className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                  >
-                    Get started{" "}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="ml-2"
-                    >
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </form>
+            <SigninForm />
             <div className="mt-3 space-y-3">
               <button
                 type="button"

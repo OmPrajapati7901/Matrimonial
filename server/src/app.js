@@ -25,10 +25,12 @@ app.use(cookieParser());
 // const userRouter = require('./routes/user.routes.js');
 const userprofileRouter = require('./routes/userProfile.routes.js');
 const ApiError = require("./utils/ApiError.js");
+const matchRouter = require('./routes/match.routes.js');
 
 
 // app.use("/api/v1/users", userRouter)
 app.use("/api/v1/userprofile", userprofileRouter)
+app.use("/api/v1/matching", matchRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
@@ -38,6 +40,7 @@ app.get('/', (req, res) => {
 
 // Custom error handling middleware
 app.use((err, req, res, next) => {
+  console.error("Error occurred:", err); 
   if (err instanceof ApiError) {
       res.status(err.statusCode).json({
           success: err.success,

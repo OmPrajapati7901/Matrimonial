@@ -54,7 +54,7 @@ module.exports = mongoose.model("UserProfile", userProfileSchema);
 
 // preference and gender
 
-// // Preference
+// // // Preference
 // const preference = ["Male", "Female", "Non-binary", "Any"];
 
 // // Gender
@@ -84,7 +84,7 @@ module.exports = mongoose.model("UserProfile", userProfileSchema);
 // ];
 
 // workPreference and workStatus
-// // Work Preference
+// Work Preference
 // const workPreference = [
 //   "Employed Full-time",
 //   "Employed Part-time",
@@ -96,15 +96,15 @@ module.exports = mongoose.model("UserProfile", userProfileSchema);
 // ];
 
 // // Work Status
-// const workStatus = [
-//   "Employed Full-time",
-//   "Employed Part-time",
-//   "Self-employed",
-//   "Unemployed",
-//   "Student",
-//   "Retired",
-//   "Homemaker"
-// ];
+const workStatus = [
+  "Employed Full-time",
+  "Employed Part-time",
+  "Self-employed",
+  "Unemployed",
+  "Student",
+  "Retired",
+  "Homemaker"
+];
 
 
 // possible values 

@@ -14,7 +14,7 @@ const verifyJWT = asyncHandler(async (req, _, next) => {
         }
     
         const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-         console.log("from middle ware", process.env.ACCESS_TOKEN_SECRET)
+        //   console.log("from middle ware", process.env.ACCESS_TOKEN_SECRET)
         // console.log('decodedToken?._id',decodedToken?._id)
         const user = await User.findById(decodedToken?._id).select("-password -refreshToken");
         // console.log(decodedToken)
@@ -23,7 +23,7 @@ const verifyJWT = asyncHandler(async (req, _, next) => {
         }
     
         req.user = user;
-        console.log("from middle ware user", user)
+        // console.log("from middle ware user", user)
         next();
     } catch (error) {
         console.log("from in catch middle ware user", error )

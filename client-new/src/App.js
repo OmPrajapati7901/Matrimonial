@@ -10,6 +10,7 @@ import Profile from "./pages/Profile";
 import SigninPage from "./pages/Signin";
 import SignupPage from "./pages/Signup";
 import CreateProfile from "./pages/CreateProfile";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   return (
@@ -73,6 +74,16 @@ function App() {
             <ProtectedRoute>
               <Layout>
                 <CreateProfile />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/change-password"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <ChangePassword />
               </Layout>
             </ProtectedRoute>
           }

@@ -96,20 +96,50 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="mt-4">
-        <button
-          type="button"
-          onClick={() => {routeChange("/create-profile")}}
-          className="inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-black/80"
-        >
-          Button Text
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </button>
+        <div className="mt-4 space-y-4">
+          <button
+            type="button"
+            onClick={() => {
+              routeChange("/create-profile");
+            }}
+            className="inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-black/80"
+          >
+            Button Text
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </button>
+        </div>
+        <div className="mt-4 space-y-4">
+          <button
+            type="button"
+            onClick={() => {
+              routeChange("/change-password");
+            }}
+            className="inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-black/80"
+          >
+            Change Password
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </button>
         </div>
       </div>
     );
   // JSON.stringify(error.data, null, 2)
-  return <ShowUserProfile userProfile={userProfile} />;
+  return (
+    <div>
+      <ShowUserProfile userProfile={userProfile} />
+      <div className="mt-4 space-y-4">
+        <button
+          type="button"
+          onClick={() => {
+            routeChange("/change-password");
+          }}
+          className="inline-flex items-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white hover:bg-black/80"
+        >
+          Change Password
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;

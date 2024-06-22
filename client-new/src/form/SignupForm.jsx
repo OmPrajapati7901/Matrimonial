@@ -7,10 +7,15 @@ const SignupForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handlesignup = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_AUTH_API_URL}/api/v1/users/register`,
@@ -79,6 +84,26 @@ const SignupForm = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </div>
+        <div>
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="confirmPassword"
+              className="text-base font-medium text-gray-900"
+            >
+              Confirm Password
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+              type="password"
+              placeholder="Confirm Password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
         </div>
